@@ -1,0 +1,42 @@
+{
+	"name": "Abandoned Void Mineshaft",
+	"description": "One of the only places in the overworld you can access the void, the ancients tried to go deep into it in an attempt to find out what was actually down there.",
+	"extraNotes": "null",
+	"type": "Wave",
+	"dimension": "Overworld",
+	"spawnPoint": {
+		"x": "90",
+		"y": "-54",
+		"z": "97"
+	},
+	"facing": {
+		"x": "91",
+		"y": "-53",
+		"z": "97"
+	},
+	"components": [
+		{
+			"mobs": [
+				{
+					"name": "zombie1",
+					"type": "zombie",
+					"wave": "1",
+					"location": {
+						"x": "107",
+						"y": "-53",
+						"z": "86"
+					},
+					"facing": {
+						"x": "107",
+						"y": "-52",
+						"z": "87"
+					}
+				}
+			],
+			"waves": "3",
+			"rewards": {},
+			"baseDifficulty": "Normal",
+			"type": "roomWaveData"
+		}
+	]
+}
