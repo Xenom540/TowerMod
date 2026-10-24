@@ -5,18 +5,30 @@ import { pickRandom } from "./scripts/helperFunctions.js";
 
 const rewards = [];
 const rewardOptions = [];
-let maxRewardCount = 3;
+
+let roomsCompleted = 0;
+
+let maxRewardCount = Math.floor((roomsCompleted+15)/5);
 let maxRewardScore = maxRewardCount*3-4;
 
+
+
 function reward() {
-    let rewardScore = 0;
-    let rewardCount = 0;
+    roomsCompleted++;
+    maxRewardCount = Math.floor((roomsCompleted+15)/5);
+    maxRewardScore = maxRewardCount*3-4
     
-    while (rewardScore < maxRewardScore && rewardCount < maxRewardCount) {
+    let rewardsScore = 0;
+    let rewardsCount = 0;
+
+    while (rewardsScore < maxRewardScore && rewardsCount < maxRewardCount) {
         let randItem = rewards[pickRandom(rewards.length)];
         if (randItem.score+currentScore < maxRewardScore && rewards.length < maxRewardCount) {
-            
+            rewardsScore += randItem.score;
+            rewardsCount++;
+            rewards.push[randItem];
         }
     }
+
     world.console.runCommandAsync(`titleraw as @a[tag=finishedRoom] at @s title {"rawtext": [{"text": "§aSELECT YOUR REWARD"}]}`);
 }
