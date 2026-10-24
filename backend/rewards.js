@@ -8,10 +8,10 @@ const rewardOptions = [];
 
 let roomsCompleted = 0;
 
+// #region REWARD OPTIONS
+
 let maxRewardCount = 3;
 let maxRewardScore = 5;
-
-
 
 function reward() {
     roomsCompleted++;
@@ -43,3 +43,5 @@ function reward() {
     const overworld = world.getDimension("Overworld");
     overworld.runCommand(`titleraw as @a[tag=finishedRoom] at @s title {"rawtext": [{"text": "§aSELECT YOUR REWARD"}]}`);
 }
+
+// #endregion
