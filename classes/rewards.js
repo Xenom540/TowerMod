@@ -1,5 +1,5 @@
 import { world, ItemStack } from "@minecraft/server";
-import { chestFormData } from "@minecraft/server-ui";
+import { ChestFormData } from "@minecraft/server-ui";
 
 import { pickRandom } from "./scripts/helperFunctions.js";
 
@@ -8,8 +8,8 @@ const rewardOptions = [];
 
 let roomsCompleted = 0;
 
-let maxRewardCount = Math.floor((roomsCompleted+15)/5);
-let maxRewardScore = maxRewardCount*3-4;
+let maxRewardCount = 3;
+let maxRewardScore = 5;
 
 
 
@@ -22,13 +22,24 @@ function reward() {
     let rewardsCount = 0;
 
     while (rewardsScore < maxRewardScore && rewardsCount < maxRewardCount) {
-        let randItem = rewards[pickRandom(rewards.length)];
-        if (randItem.score+currentScore < maxRewardScore && rewards.length < maxRewardCount) {
+        if (maxRewardScore === 0) break;
+        let remainingScore = maxRewardScore - rewardsScore;
+        let randItem;
+        
+        if (remainingScore > 5) randItem = rewards[pickRandom(rewards.length)];
+        else {
+                const filteredRewards = rewards.filter(e => e.score <= remainingScore);
+                randItem = filteredRewards[pickRandom(filteredRewards.length)]
+            };
+        if (randItem.score+rewardsScore < maxRewardScore && rewardOptions.length < maxRewardCount) {
             rewardsScore += randItem.score;
             rewardsCount++;
-            rewards.push[randItem];
+            rewardOptions.push(randItem);
         }
+
+        remainingScore = maxRewardScore - rewardsScore;
     }
 
-    world.console.runCommandAsync(`titleraw as @a[tag=finishedRoom] at @s title {"rawtext": [{"text": "§aSELECT YOUR REWARD"}]}`);
+    const overworld = world.getDimension("Overworld");
+    overworld.runCommand(`titleraw as @a[tag=finishedRoom] at @s title {"rawtext": [{"text": "§aSELECT YOUR REWARD"}]}`);
 }
