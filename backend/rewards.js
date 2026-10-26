@@ -2,6 +2,7 @@ import { world, ItemStack } from "@minecraft/server";
 import { ChestFormData } from "@minecraft/server-ui";
 
 import { pickRandom } from "./scripts/helperFunctions.js";
+import { showChestUI, giveItem } from "./backend/showChestRewards.js";
 
 const rewards = [];
 const rewardOptions = [];
@@ -40,8 +41,12 @@ function reward() {
         remainingScore = maxRewardScore - rewardsScore;
     }
 
-    const overworld = world.getDimension("Overworld");
-    overworld.runCommand(`titleraw as @a[tag=finishedRoom] at @s title {"rawtext": [{"text": "§aSELECT YOUR REWARD"}]}`);
+    const overworld = world.getDimension("overworld");
+    const finishedPlayers = entityQueryOptions = {
+        tags: [completedFloor]
+    };
+
+    showChestUI(finishedPlayers, rewards);
 }
 
 // #endregion

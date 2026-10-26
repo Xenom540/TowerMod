@@ -48,3 +48,5 @@ async function showChestUI(player, itemsList) {
         return;
     }
 }
+
+export { showChestUI, giveItem };
