@@ -1,5 +1,7 @@
 import { room, roomComponents, roomWaveData, mobData } from "./roomsClass.js";
 
+import abandonedVoidMineshaft from "./rooms/Abandoned_Void_Mineshaft"
+
 const rooms = new Map();
 
 function addRoom(roomToAdd) {
@@ -10,21 +12,16 @@ function removeRoom(roomToRemove) {
     rooms.delete(roomToRemove.name.replaceAll(" ", "_"));
 }
 
-const roomData = (await getRooms());
+//#region ADDING ROOMS
+
+addRoom(abandonedVoidMineshaft);
+
+//#endregion
+
 const roomsLength = roomData.files.length;
 
-for (let i = 0; i < roomsLength; i++) {
-    const parsedRoom = JSON.parse( 
-        await fs.readFile(
-            `./Rooms/${
-                (
-                    roomData.files[i]
-                )
-            }`
-        ),
-        
-        "utf-8" 
-    );
+for (room of rooms) {
+    const parsedRoom = JSON.parse(room, "utf-8");
     const parsedComponents = [];
     if (parsedRoom.components) {
         for (const component of parsedRoom.components) {
@@ -51,18 +48,6 @@ for (let i = 0; i < roomsLength; i++) {
         parsedRoom.facing?.z ?? 0,
         parsedComponents
     ));
-}
-
-import fs from 'fs/promises';
-
-async function getRooms() {
-    try {
-        const files = await fs.readdir('.Rooms');
-        return { length: files.length, files: files };
-    } catch (error) {
-        console.error('Error occurred while reading folder length:', error);
-        return { length: 0, files: [] };
-    }
 }
 
 export { rooms, addRoom, removeRoom };

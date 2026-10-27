@@ -1,3 +1,5 @@
+import { Vector3 } from "@minecraft/server";
+
 class room {
     constructor(name, desc, type, dimension, spawnPointx, spawnPointy, spawnPointz, facingx, facingy, facingz, components = []) {
         this.name = name;
