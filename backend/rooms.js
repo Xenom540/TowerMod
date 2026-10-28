@@ -1,6 +1,6 @@
 import { room, roomComponents, roomWaveData, mobData } from "./roomsClass.js";
 
-import abandonedVoidMineshaft from "./rooms/Abandoned_Void_Mineshaft"
+import abandonedVoidMineshaft from "./rooms/Abandoned_Void_Mineshaft";
 
 const rooms = new Map();
 
