@@ -14,7 +14,9 @@ function removeRoom(roomToRemove) {
 
 //#region ADDING ROOMS
 
-addRoom(abandonedVoidMineshaft);
+const roomsArr = [
+    abandonedVoidMineshaft
+]
 
 //#endregion
 
